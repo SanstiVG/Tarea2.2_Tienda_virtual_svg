@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.ejercicio22tiendavirtual.navegacion.GestionNavegacion
 import com.example.ejercicio22tiendavirtual.pantallas.PantallaHome
 import com.example.ejercicio22tiendavirtual.ui.theme.Ejercicio22TiendaVirtualTheme
 
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejercicio22TiendaVirtualTheme {
-                PantallaHome()
+                GestionNavegacion()
             }
         }
     }
