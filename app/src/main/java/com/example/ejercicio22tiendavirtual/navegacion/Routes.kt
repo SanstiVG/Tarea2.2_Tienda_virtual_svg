@@ -9,6 +9,8 @@ sealed class Routes: NavKey {
     data object Home: Routes()
     @Serializable
     data class Detalle(val producto: Producto): Routes()
+    @Serializable
+    data object Compra: Routes()
 
     @Serializable
     data object Error: Routes()

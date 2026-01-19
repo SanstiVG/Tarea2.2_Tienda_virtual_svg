@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.example.ejercicio22tiendavirtual.pantallas.PantallaCompra
 import com.example.ejercicio22tiendavirtual.pantallas.PantallaDetalle
 import com.example.ejercicio22tiendavirtual.pantallas.PantallaHome
 
@@ -29,8 +30,16 @@ fun GestionNavegacion() {
                         key.producto,
                         navegaAtras = {
                             pilaNavegacion.removeLastOrNull()
+                        },
+                        navegaCompra = {
+                            pilaNavegacion.add(Routes.Compra)
                         }
 
+                    )
+                }
+                is Routes.Compra -> NavEntry(key) {
+                    PantallaCompra(
+                        navegaHome = { pilaNavegacion.add(Routes.Home) }
                     )
                 }
                 else -> NavEntry(Routes.Error){
