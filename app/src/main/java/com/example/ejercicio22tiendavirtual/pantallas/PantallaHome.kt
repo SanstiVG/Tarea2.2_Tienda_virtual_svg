@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -27,11 +28,35 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ejercicio22tiendavirtual.Producto
 import com.example.ejercicio22tiendavirtual.R
 
 
 @Composable
-fun PantallaHome() {
+fun PantallaHome(
+    navegaADetalle:(Producto)->Unit
+) {
+    val productos = listOf(
+        Producto(
+            R.string.producto_zapatilla,
+            R.string.producto_zapatilla_precio,
+            R.drawable.zapatillasnike,
+            R.string.producto_zapatilla_desc
+        ),
+        Producto(
+            R.string.producto_camiseta,
+            R.string.producto_camiseta_precio,
+            R.drawable.camisetamalaga,
+            R.string.producto_camiseta_desc
+        ),
+        Producto(
+            R.string.producto_gorra,
+            R.string.producto_gorra_precio,
+            R.drawable.gorramalaga,
+            R.string.producto_gorra_desc
+        )
+    )
+
     Scaffold {
         paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
@@ -39,14 +64,13 @@ fun PantallaHome() {
                 Text("Catálogo disponible:", modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
             }
 
-            item {
-                Producto(R.string.producto_zapatilla,"99.99€", R.drawable.zapatillasnike)
-            }
-            item {
-                Producto(R.string.producto_camiseta,"69.90€", R.drawable.camisetamalaga)
-            }
-            item {
-                Producto(R.string.producto_gorra,"15.0€", R.drawable.gorramalaga)
+            items(productos) { producto ->
+                ItemProducto(
+                    producto = producto,
+                    onVerClick = {
+                        navegaADetalle(producto)
+                    }
+                )
             }
 
         }
@@ -54,10 +78,9 @@ fun PantallaHome() {
 }
 
 @Composable
-fun Producto(
-    nombre: Int,
-    precio: String,
-    imagenRes: Int
+fun ItemProducto(
+    producto: Producto,
+    onVerClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -74,7 +97,7 @@ fun Producto(
         ) {
 
             Image(
-                painter = painterResource(id = imagenRes),
+                painter = painterResource(id = producto.imagenRes),
                 contentDescription = "",
                 modifier = Modifier
                     .size(90.dp)
@@ -86,26 +109,28 @@ fun Producto(
 
             Column(
                 modifier = Modifier.weight(1f)
-            ){
+            ) {
                 Text(
-                    text = stringResource(id = nombre),
+                    text = stringResource(id = producto.nombre),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
                 Text(
-                    text = precio,
+                    text = stringResource(id = producto.precio),
                     color = Color.Gray,
                     fontSize = 14.sp
                 )
             }
 
             Button(
-                onClick = {},
+                onClick = onVerClick,
                 shape = RoundedCornerShape(20.dp)
-
             ) {
                 Text(text = "Ver")
             }
         }
     }
 }
+
+
+

@@ -3,4 +3,11 @@
     <string name="producto_zapatilla">Zapatillas Nike</string>
     <string name="producto_camiseta">Camiseta Málaga CF</string>
     <string name="producto_gorra">Gorra Málaga CF</string>
+    <string name="producto_zapatilla_precio">99.99€</string>
+    <string name="producto_camiseta_precio">69.90€</string>
+    <string name="producto_gorra_precio">15.0€</string>
+    <string name="producto_zapatilla_desc">Descripción de ZAPATILLAS</string>
+    <string name="producto_camiseta_desc">Descripción de CAMISETA</string>
+    <string name="producto_gorra_desc">Descripción de GORRA</string>
+
 </resources>

@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.example.ejercicio22tiendavirtual.pantallas.PantallaDetalle
 import com.example.ejercicio22tiendavirtual.pantallas.PantallaHome
 
 @Composable
@@ -18,7 +19,19 @@ fun GestionNavegacion() {
         entryProvider = { key ->
             when (key) {
                 is Routes.Home -> NavEntry(key) {
-                    PantallaHome()
+                    PantallaHome(
+                        navegaADetalle = { producto -> pilaNavegacion.add(Routes.Detalle(producto))
+                        }
+                    )
+                }
+                is Routes.Detalle -> NavEntry(key){
+                    PantallaDetalle(
+                        key.producto,
+                        navegaAtras = {
+                            pilaNavegacion.removeLastOrNull()
+                        }
+
+                    )
                 }
                 else -> NavEntry(Routes.Error){
                     Text("Error")
